@@ -6,6 +6,10 @@ import About from "../pages/About/About";
 import AdminLogin from "../pages/Auth/AdminLogin/AdminLogin";
 import UserLogin from "../pages/Auth/UserLogin/UserLogin";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
+import AllDistributor from "../pages/Dashboard/AllDistributor/AllDistributor";
+import AllMenufacturer from "../pages/Dashboard/AllMenufacturer/AllMenufacturer";
+import AllRetailer from "../pages/Dashboard/AllRetailer/AllRetailer";
+import AllTransportAgency from "../pages/Dashboard/AllTransportAgency/AllTransportAgency";
 import DistributerRegister from "../pages/Dashboard/Register/DistributerRegister";
 import MenufacturerRegister from "../pages/Dashboard/Register/MenufacturerRegister";
 import RetailerRegister from "../pages/Dashboard/Register/RetailerRegister";
@@ -58,6 +62,22 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/registerTransport",
         element: <TransportRegister></TransportRegister>,
+      },
+      {
+        path: "/dashboard/allTransportAgency",
+        element: <AllTransportAgency></AllTransportAgency>,
+      },
+      {
+        path: "/dashboard/allRetailer",
+        element: <AllRetailer></AllRetailer>,
+      },
+      {
+        path: "/dashboard/allDistributor",
+        element: <AllDistributor></AllDistributor>,
+      },
+      {
+        path: "/dashboard/allMenufacturer",
+        element: <AllMenufacturer></AllMenufacturer>,
       },
     ],
   },

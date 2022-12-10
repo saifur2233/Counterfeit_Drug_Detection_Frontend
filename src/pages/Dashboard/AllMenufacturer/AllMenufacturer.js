@@ -1,10 +1,10 @@
 import React from "react";
 
-const AllDistributor = () => {
+const AllMenufacturer = () => {
   return (
     <div>
       <h1 className="text-2xl font-bold text-center text-secondary py-6">
-        All Distributor
+        All Menufacturer
       </h1>
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full">
@@ -48,24 +48,6 @@ const AllDistributor = () => {
               <td>Hart Hagerty</td>
               <td>Desktop Support Technician</td>
               <td>Purple</td>
-              <td>
-                <button className="btn btn-square btn-secondary btn-outline">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </td>
             </tr>
 
             <tr>
@@ -73,24 +55,6 @@ const AllDistributor = () => {
               <td>Brice Swyre</td>
               <td>Tax Accountant</td>
               <td>Red</td>
-              <td>
-                <button className="btn btn-square btn-secondary btn-outline">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </td>
             </tr>
           </tbody>
         </table>
@@ -99,4 +63,4 @@ const AllDistributor = () => {
   );
 };
 
-export default AllDistributor;
+export default AllMenufacturer;
