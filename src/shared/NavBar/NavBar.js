@@ -82,7 +82,9 @@ const NavBar = () => {
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
       <div className="navbar-end">
-        <Link className="btn btn-secondary">Dashboard</Link>
+        <Link to="/dashboard" className="btn btn-secondary">
+          Dashboard
+        </Link>
       </div>
       <label
         htmlFor="dashboard-drawer"

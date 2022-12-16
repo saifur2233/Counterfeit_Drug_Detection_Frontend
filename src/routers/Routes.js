@@ -2,6 +2,7 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import Main from "../layouts/Main/Main";
+import UserDashboardLayout from "../layouts/UserDashboardLayout/UserDashboardLayout";
 import About from "../pages/About/About";
 import AdminLogin from "../pages/Auth/AdminLogin/AdminLogin";
 import UserLogin from "../pages/Auth/UserLogin/UserLogin";
@@ -14,6 +15,11 @@ import DistributerRegister from "../pages/Dashboard/Register/DistributerRegister
 import MenufacturerRegister from "../pages/Dashboard/Register/MenufacturerRegister";
 import RetailerRegister from "../pages/Dashboard/Register/RetailerRegister";
 import TransportRegister from "../pages/Dashboard/Register/TransportRegister";
+import DistributorRequestDrugs from "../pages/Dashboard/UserDashboard/Distributor/DistributorRequestDrugs";
+import HomePageDistributor from "../pages/Dashboard/UserDashboard/Distributor/HomePageDistributor";
+import AddDrugsMenufacturer from "../pages/Dashboard/UserDashboard/Menufacturer/AddDrugsMenufacturer";
+import HomePageMenufacturer from "../pages/Dashboard/UserDashboard/Menufacturer/HomePageMenufacturer";
+import UserDashboard from "../pages/Dashboard/UserDashboard/UserDashboard";
 import Home from "../pages/Home/Home";
 
 export const router = createBrowserRouter([
@@ -78,6 +84,32 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/allMenufacturer",
         element: <AllMenufacturer></AllMenufacturer>,
+      },
+    ],
+  },
+  {
+    path: "/userdashboard",
+    element: <UserDashboardLayout></UserDashboardLayout>,
+    children: [
+      {
+        path: "/userdashboard",
+        element: <UserDashboard></UserDashboard>,
+      },
+      {
+        path: "/userdashboard/homeMenufacturer",
+        element: <HomePageMenufacturer></HomePageMenufacturer>,
+      },
+      {
+        path: "/userdashboard/addDrugs",
+        element: <AddDrugsMenufacturer></AddDrugsMenufacturer>,
+      },
+      {
+        path: "/userdashboard/homeDistributor",
+        element: <HomePageDistributor></HomePageDistributor>,
+      },
+      {
+        path: "/userdashboard/distributorRequestDrugs",
+        element: <DistributorRequestDrugs></DistributorRequestDrugs>,
       },
     ],
   },

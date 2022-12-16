@@ -9,7 +9,7 @@ const UserLogin = () => {
       </div>
       <div className="grid p-12 gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <div className="card bg-base-100 shadow-xl">
-          <Link to="">
+          <Link to="/">
             <figure>
               <img src="https://i.ibb.co/J7JLjs7/factory.jpg" alt="Shoes" />
             </figure>
