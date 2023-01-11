@@ -5,6 +5,7 @@ import Main from "../layouts/Main/Main";
 import UserDashboardLayout from "../layouts/UserDashboardLayout/UserDashboardLayout";
 import About from "../pages/About/About";
 import AdminLogin from "../pages/Auth/AdminLogin/AdminLogin";
+import AdminRegistration from "../pages/Auth/AdminLogin/AdminRegistration";
 import UserLogin from "../pages/Auth/UserLogin/UserLogin";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
 import AllDistributor from "../pages/Dashboard/AllDistributor/AllDistributor";
@@ -17,8 +18,11 @@ import RetailerRegister from "../pages/Dashboard/Register/RetailerRegister";
 import TransportRegister from "../pages/Dashboard/Register/TransportRegister";
 import DistributorRequestDrugs from "../pages/Dashboard/UserDashboard/Distributor/DistributorRequestDrugs";
 import HomePageDistributor from "../pages/Dashboard/UserDashboard/Distributor/HomePageDistributor";
+import ViewRetailerRequests from "../pages/Dashboard/UserDashboard/Distributor/ViewRetailerRequests";
 import AddDrugsMenufacturer from "../pages/Dashboard/UserDashboard/Menufacturer/AddDrugsMenufacturer";
 import HomePageMenufacturer from "../pages/Dashboard/UserDashboard/Menufacturer/HomePageMenufacturer";
+import MenuViewDrugDetails from "../pages/Dashboard/UserDashboard/Menufacturer/MenuViewDrugDetails";
+import ViewDrugRequest from "../pages/Dashboard/UserDashboard/Menufacturer/ViewDrugRequest";
 import UserDashboard from "../pages/Dashboard/UserDashboard/UserDashboard";
 import Home from "../pages/Home/Home";
 
@@ -38,6 +42,10 @@ export const router = createBrowserRouter([
       {
         path: "/adminlogin",
         element: <AdminLogin></AdminLogin>,
+      },
+      {
+        path: "/adminadd",
+        element: <AdminRegistration></AdminRegistration>,
       },
       {
         path: "/userlogin",
@@ -104,12 +112,24 @@ export const router = createBrowserRouter([
         element: <AddDrugsMenufacturer></AddDrugsMenufacturer>,
       },
       {
+        path: "/userdashboard/menuViewDrugRequest",
+        element: <ViewDrugRequest></ViewDrugRequest>,
+      },
+      {
+        path: "/userdashboard/menuViewDrugDetails",
+        element: <MenuViewDrugDetails></MenuViewDrugDetails>,
+      },
+      {
         path: "/userdashboard/homeDistributor",
         element: <HomePageDistributor></HomePageDistributor>,
       },
       {
         path: "/userdashboard/distributorRequestDrugs",
         element: <DistributorRequestDrugs></DistributorRequestDrugs>,
+      },
+      {
+        path: "/userdashboard/distributorViewRetailerReq",
+        element: <ViewRetailerRequests></ViewRetailerRequests>,
       },
     ],
   },

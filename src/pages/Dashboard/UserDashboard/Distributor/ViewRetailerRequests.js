@@ -1,11 +1,11 @@
 import React from "react";
 
-const ViewDrugRequest = () => {
+const ViewRetailerRequests = () => {
   return (
     <div>
       <div>
         <h1 className="font-bold text-3xl text-center">
-          Menufacturer View Drugs Request
+          View Retailer Drug Requests
         </h1>
         <div className="py-8">
           <div className="overflow-x-auto">
@@ -103,4 +103,4 @@ const ViewDrugRequest = () => {
   );
 };
 
-export default ViewDrugRequest;
+export default ViewRetailerRequests;

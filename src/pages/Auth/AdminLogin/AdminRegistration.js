@@ -1,32 +1,31 @@
 import React, { useContext, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 import Adminlogin from "../../../assets/images/auth/adminLogin.jpg";
 import { AuthContext } from "../../../contexts/UserContext";
 
-const AdminLogin = () => {
-  const { logIn } = useContext(AuthContext);
+const AdminRegistration = () => {
+  const { createUser } = useContext(AuthContext);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
 
-  const handleAdminLogin = (event) => {
+  const handleAdminRegistration = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
 
-    logIn(email, password)
+    if (password.length < 6) {
+      setError(`Your Password must be 6 character`);
+      return;
+    }
+
+    createUser(email, password)
       .then((result) => {
         const user = result.user;
-        const currentUser = {
-          email: user.email,
-        };
-        navigate("/dashboard");
+        toast.success("Admin created Successfully");
       })
-      .catch(() => {
-        setError("Eamil and Password not match!...");
+      .catch((error) => {
+        setError(error.message);
       });
   };
   return (
@@ -38,8 +37,11 @@ const AdminLogin = () => {
           </div>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <h1 className="text-5xl font-bold text-center pt-4">Login now!</h1>
-          <form onSubmit={handleAdminLogin} className="card-body">
+          <h1 className="text-5xl font-bold text-center pt-4">Admin Panel</h1>
+          <h2 className="text-2xl font-bold text-error text-center">
+            !!!Restricted Area!!!
+          </h2>
+          <form onSubmit={handleAdminRegistration} className="card-body">
             <p className="text-center text-red-600">{error}</p>
             <div className="form-control">
               <label className="label">
@@ -66,7 +68,7 @@ const AdminLogin = () => {
               />
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-secondary">Login</button>
+              <button className="btn btn-secondary">Register</button>
             </div>
           </form>
         </div>
@@ -75,4 +77,4 @@ const AdminLogin = () => {
   );
 };
 
-export default AdminLogin;
+export default AdminRegistration;
