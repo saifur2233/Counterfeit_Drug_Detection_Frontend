@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
 const DistributerRegister = () => {
+  const [distributorId, setDistributorId] = useState("");
+
+  const generateDistributorId = () => {
+    setDistributorId(Math.floor(Math.random() * 100000000 + 3));
+  };
+
+  const handleRegistration = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const address = form.address.value;
+    console.log(name, address, distributorId);
+  };
   return (
     <div className="hero min-h-screen bg-base-100">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -14,9 +27,9 @@ const DistributerRegister = () => {
           </figure>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <div className="card-body">
+          <form onSubmit={handleRegistration} className="card-body">
             <h1 className="text-5xl font-bold text-center text-secondary">
-              Registration
+              Distributor Registration
             </h1>
             <div className="form-control">
               <label className="label">
@@ -27,6 +40,7 @@ const DistributerRegister = () => {
                 name="name"
                 placeholder="Distributor Name"
                 className="input input-bordered"
+                required
               />
             </div>
             <div className="form-control">
@@ -38,6 +52,7 @@ const DistributerRegister = () => {
                 placeholder="Enter Address"
                 name="address"
                 className="input input-bordered"
+                required
               />
             </div>
             <div className="form-control">
@@ -49,14 +64,16 @@ const DistributerRegister = () => {
                   type="text"
                   placeholder="Distributor ID"
                   className="input input-bordered"
+                  defaultValue={distributorId}
+                  required
                 />
-                <span>Generate</span>
+                <span onClick={generateDistributorId}>Generate</span>
               </label>
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-secondary">Add to System</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

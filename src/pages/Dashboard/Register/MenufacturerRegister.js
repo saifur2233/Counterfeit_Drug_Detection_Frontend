@@ -61,8 +61,9 @@ const MenufacturerRegister = () => {
               <label className="input-group">
                 <input
                   type="text"
+                  placeholder="Menufacturer ID"
                   className="input input-bordered"
-                  value={menufacturerId}
+                  defaultValue={menufacturerId}
                   required
                 />
                 <span onClick={generateMenufacturerId}>Generate</span>
