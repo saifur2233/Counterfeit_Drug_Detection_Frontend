@@ -1,15 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
+import QRCode from "react-qr-code";
 
 const AddDrugsMenufacturer = () => {
+  const [drugCode, setDrugCode] = useState("");
+
+  const generateDrugCode = () => {
+    setDrugCode(Math.floor(Math.random() * 10000000000 + 1));
+  };
+
+  // download qr code
+  const download = () => {
+    const svg = document.getElementById("QRCode");
+    const svgData = new XMLSerializer().serializeToString(svg);
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    const img = new Image();
+    img.onload = () => {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+      const pngFile = canvas.toDataURL("image/png");
+      const downloadLink = document.createElement("a");
+      // name of the image
+      downloadLink.download = `${drugCode}`;
+      downloadLink.href = `${pngFile}`;
+      downloadLink.click();
+    };
+    img.src = `data:image/svg+xml;base64,${btoa(svgData)}`;
+  };
+
   const handleAddDrug = (event) => {
     event.preventDefault();
     const form = event.target;
+    const menufacturerName = form.menufacturerName.value;
     const drugName = form.drugName.value;
-    const drugCode = form.drugCode.value;
-    const drugWeight = form.drugWeight.value;
+    const drugDosage = form.drugDosage.value;
     const drugQuantity = form.drugQuantity.value;
-    const price = form.price.value;
-    console.log(drugName, drugCode, drugWeight, drugQuantity, price);
+    const mfgDate = form.mfgDate.value;
+    const expDate = form.expDate.value;
+    console.log(
+      menufacturerName,
+      drugName,
+      drugCode,
+      drugDosage,
+      drugQuantity,
+      mfgDate,
+      expDate
+    );
   };
   return (
     <div>
@@ -17,12 +54,24 @@ const AddDrugsMenufacturer = () => {
         <h1 className="font-bold text-3xl text-center">
           Add Drugs of Menufacturer
         </h1>
-        <div className="flex justify-center py-10">
+        <div className="flex justify-center gap-12 py-10">
           <form
             onSubmit={handleAddDrug}
             className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
           >
             <div className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Menufacturer Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="menufacturerName"
+                  placeholder="Menufacturer Name"
+                  className="input input-bordered"
+                  required
+                />
+              </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Drug Name</span>
@@ -32,6 +81,7 @@ const AddDrugsMenufacturer = () => {
                   name="drugName"
                   placeholder="Drug Name"
                   className="input input-bordered"
+                  required
                 />
               </div>
               <div className="form-control">
@@ -41,44 +91,66 @@ const AddDrugsMenufacturer = () => {
                 <label className="input-group">
                   <input
                     type="text"
-                    name="drugCode"
+                    defaultValue={drugCode}
+                    required
                     placeholder="#jrej456k"
                     className="input input-bordered"
                   />
-                  <span className="btn btn-accent text-white">GENERATE</span>
+                  <span
+                    onClick={generateDrugCode}
+                    className="btn btn-accent text-white"
+                  >
+                    GENERATE
+                  </span>
                 </label>
+              </div>
+              <div className="flex gap-3">
+                <div className="form-control w-1/2">
+                  <label className="label">
+                    <span className="label-text">Drug Dosage</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="drugDosage"
+                    placeholder="Drug Dosage"
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
+                <div className="form-control w-1/2">
+                  <label className="label">
+                    <span className="label-text">Drug Quantity</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="drugQuantity"
+                    placeholder="Drug Quantity"
+                    className="input input-bordered"
+                  />
+                </div>
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Drug Weight</span>
+                  <span className="label-text">Mfg_Date</span>
                 </label>
                 <input
                   type="text"
-                  name="drugWeight"
-                  placeholder="Drug Weight"
+                  name="mfgDate"
+                  placeholder="Mfg_Date"
                   className="input input-bordered"
+                  required
                 />
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Drug Quantity</span>
+                  <span className="label-text">Exp_Date</span>
                 </label>
                 <input
                   type="text"
-                  name="drugQuantity"
-                  placeholder="Drug Quantity"
+                  name="expDate"
+                  placeholder="Exp_Date"
                   className="input input-bordered"
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Price</span>
-                </label>
-                <input
-                  type="text"
-                  name="price"
-                  placeholder="Price"
-                  className="input input-bordered"
+                  required
                 />
               </div>
               <div className="form-control mt-6">
@@ -86,6 +158,29 @@ const AddDrugsMenufacturer = () => {
               </div>
             </div>
           </form>
+          <div className="py-20">
+            <h1 className="font-bold text-3xl text-center py-6"> QR Code</h1>
+            <div
+              className="pb-6"
+              style={{
+                height: "auto",
+                margin: "0 auto",
+                maxWidth: 64,
+                width: "100%",
+              }}
+            >
+              <QRCode
+                size={256}
+                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                value={`${drugCode}`}
+                viewBox={`0 0 256 256`}
+                id="QRCode"
+              />
+            </div>
+            <button onClick={download} className="btn btn-secondary text-white">
+              Download
+            </button>
+          </div>
         </div>
       </div>
     </div>
