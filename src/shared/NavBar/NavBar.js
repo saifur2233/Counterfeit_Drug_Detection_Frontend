@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/images/drugs.png";
+import { FaSun } from "react-icons/fa";
 
 const NavBar = () => {
+  const [dark, setDark] = useState(false);
+  const handleDark = () => {
+    setDark(!dark);
+    localStorage.setItem("dark-mode", !dark);
+  };
+
+  useEffect(() => {
+    const localDark = JSON.parse(localStorage.getItem("dark-mode"));
+    console.log(localDark);
+    setDark(localDark);
+  }, []);
+
+  useEffect(() => {
+    if (dark) {
+      document.querySelector("html")?.setAttribute("data-theme", "night");
+    } else {
+      document.querySelector("html")?.setAttribute("data-theme", "winter");
+    }
+  }, [dark]);
+
   const menuItems = (
     <React.Fragment>
       <li>
@@ -82,9 +103,12 @@ const NavBar = () => {
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
       <div className="navbar-end">
-        <Link to="/dashboard" className="btn btn-secondary">
+        <Link to="/dashboard" className="btn btn-primary">
           Dashboard
         </Link>
+        <button onClick={handleDark} className="btn btn-ghost btn-circle">
+          <FaSun size={"2em"}></FaSun>
+        </button>
       </div>
       <label
         htmlFor="dashboard-drawer"
