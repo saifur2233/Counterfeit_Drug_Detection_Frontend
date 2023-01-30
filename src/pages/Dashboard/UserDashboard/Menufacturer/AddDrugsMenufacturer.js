@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 import QRCode from "react-qr-code";
 
 const AddDrugsMenufacturer = () => {
@@ -38,15 +39,32 @@ const AddDrugsMenufacturer = () => {
     const drugQuantity = form.drugQuantity.value;
     const mfgDate = form.mfgDate.value;
     const expDate = form.expDate.value;
-    console.log(
+
+    const drug = {
       menufacturerName,
       drugName,
       drugCode,
       drugDosage,
       drugQuantity,
       mfgDate,
-      expDate
-    );
+      expDate,
+    };
+
+    console.log(drug);
+
+    fetch("http://localhost:4000/api/v1/menufacturer/addDrug", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(drug),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success("Drug successfully added.");
+        form.reset();
+      });
   };
   return (
     <div>
@@ -154,7 +172,7 @@ const AddDrugsMenufacturer = () => {
                 />
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-secondary">Add to System</button>
+                <button className="btn btn-primary">Add to System</button>
               </div>
             </div>
           </form>
@@ -177,7 +195,7 @@ const AddDrugsMenufacturer = () => {
                 id="QRCode"
               />
             </div>
-            <button onClick={download} className="btn btn-secondary text-white">
+            <button onClick={download} className="btn btn-primary text-white">
               Download
             </button>
           </div>

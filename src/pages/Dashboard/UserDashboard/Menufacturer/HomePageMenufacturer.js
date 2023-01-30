@@ -7,8 +7,9 @@ const HomePageMenufacturer = () => {
         <h1 className="font-bold text-3xl text-center">
           Home Page of Menufacturer
         </h1>
-        <div>
+        <div className="flex justify-center py-12">
           <img
+            className="w-1/2"
             src="https://i.ibb.co/J7JLjs7/factory.jpg"
             alt="HomePageMenufacturer"
           />
