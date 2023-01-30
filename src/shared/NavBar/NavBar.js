@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/images/drugs.png";
 import { FaSun } from "react-icons/fa";
+import { AuthContext } from "../../contexts/UserContext";
 
 const NavBar = () => {
+  const { user, logout } = useContext(AuthContext);
   const [dark, setDark] = useState(false);
   const handleDark = () => {
     setDark(!dark);
@@ -27,44 +29,42 @@ const NavBar = () => {
   const menuItems = (
     <React.Fragment>
       <li>
-        <Link className="font-bold" to="/">
+        <Link className="font-bold text-primary" to="/">
           Home
         </Link>
       </li>
       <li>
-        <Link className="font-bold" to="/about">
+        <Link className="font-bold text-primary" to="/about">
           About
         </Link>
       </li>
-      <li>
-        <Link className="font-bold" to="/adminlogin">
-          Admin Login
-        </Link>
-      </li>
-      <li>
-        <Link className="font-bold" to="/userlogin">
-          User Login
-        </Link>
-      </li>
-      {/* {user?.uid ? (
+      {user?.uid ? (
         <>
-          <li className="font-semibold">
-            <Link to="/">{user?.email ? user?.email.slice(0, 7) : ""}</Link>
-          </li>
-          <li className="font-semibold">
-            <Link onClick={logout}>Logout</Link>
+          <li>
+            <Link className="font-bold text-primary">
+              {user?.email.slice(0, 10)}
+            </Link>
           </li>
           <li>
-            <Link to="/dashboard">
-              <button className="btn btn-outline btn-info">Dashboard</button>
+            <Link className="font-bold text-primary" onClick={logout}>
+              Logout
             </Link>
           </li>
         </>
       ) : (
-        <li className="font-semibold">
-          <Link to="/login">Login</Link>
-        </li>
-      )} */}
+        <>
+          <li>
+            <Link className="font-bold text-primary" to="/adminlogin">
+              Admin Login
+            </Link>
+          </li>
+          <li>
+            <Link className="font-bold text-primary" to="/userlogin">
+              User Login
+            </Link>
+          </li>
+        </>
+      )}
     </React.Fragment>
   );
   return (

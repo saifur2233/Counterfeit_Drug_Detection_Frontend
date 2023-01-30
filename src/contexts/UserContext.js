@@ -5,8 +5,6 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  GoogleAuthProvider,
-  signInWithPopup,
   updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
@@ -18,7 +16,6 @@ const auth = getAuth(app);
 const UserContext = ({ children }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
-  const googleProvider = new GoogleAuthProvider();
 
   const createUser = (email, password) => {
     setLoading(true);

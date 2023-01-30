@@ -25,6 +25,7 @@ import MenuViewDrugDetails from "../pages/Dashboard/UserDashboard/Menufacturer/M
 import ViewDrugRequest from "../pages/Dashboard/UserDashboard/Menufacturer/ViewDrugRequest";
 import UserDashboard from "../pages/Dashboard/UserDashboard/UserDashboard";
 import Home from "../pages/Home/Home";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -59,39 +60,75 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <AdminDashboard></AdminDashboard>,
+        element: (
+          <PrivateRoute>
+            <AdminDashboard></AdminDashboard>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/registerMenufacturer",
-        element: <MenufacturerRegister></MenufacturerRegister>,
+        element: (
+          <PrivateRoute>
+            <MenufacturerRegister></MenufacturerRegister>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/registerDistributor",
-        element: <DistributerRegister></DistributerRegister>,
+        element: (
+          <PrivateRoute>
+            <DistributerRegister></DistributerRegister>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/registerRetailer",
-        element: <RetailerRegister></RetailerRegister>,
+        element: (
+          <PrivateRoute>
+            <RetailerRegister></RetailerRegister>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/registerTransport",
-        element: <TransportRegister></TransportRegister>,
+        element: (
+          <PrivateRoute>
+            <TransportRegister></TransportRegister>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/allTransportAgency",
-        element: <AllTransportAgency></AllTransportAgency>,
+        element: (
+          <PrivateRoute>
+            <AllTransportAgency></AllTransportAgency>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/allRetailer",
-        element: <AllRetailer></AllRetailer>,
+        element: (
+          <PrivateRoute>
+            <AllRetailer></AllRetailer>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/allDistributor",
-        element: <AllDistributor></AllDistributor>,
+        element: (
+          <PrivateRoute>
+            <AllDistributor></AllDistributor>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/allMenufacturer",
-        element: <AllMenufacturer></AllMenufacturer>,
+        element: (
+          <PrivateRoute>
+            <AllMenufacturer></AllMenufacturer>
+          </PrivateRoute>
+        ),
       },
     ],
   },

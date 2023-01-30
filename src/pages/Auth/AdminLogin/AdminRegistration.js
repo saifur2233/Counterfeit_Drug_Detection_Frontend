@@ -68,7 +68,7 @@ const AdminRegistration = () => {
               />
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-secondary">Register</button>
+              <button className="btn btn-primary">Register</button>
             </div>
           </form>
         </div>
