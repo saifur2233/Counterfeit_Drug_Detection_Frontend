@@ -7,6 +7,7 @@ import About from "../pages/About/About";
 import AdminLogin from "../pages/Auth/AdminLogin/AdminLogin";
 import AdminRegistration from "../pages/Auth/AdminLogin/AdminRegistration";
 import UserLogin from "../pages/Auth/UserLogin/UserLogin";
+import CheckAuthenticity from "../pages/Customer/CheckAuthenticity";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
 import AllDistributor from "../pages/Dashboard/AllDistributor/AllDistributor";
 import AllMenufacturer from "../pages/Dashboard/AllMenufacturer/AllMenufacturer";
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: "/about",
         element: <About></About>,
+      },
+      {
+        path: "/customer/:drugCode",
+        element: <CheckAuthenticity></CheckAuthenticity>,
       },
       {
         path: "/adminlogin",

@@ -183,14 +183,15 @@ const AddDrugsMenufacturer = () => {
               style={{
                 height: "auto",
                 margin: "0 auto",
-                maxWidth: 64,
+                maxWidth: 128,
                 width: "100%",
               }}
             >
               <QRCode
                 size={256}
                 style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                value={`${drugCode}`}
+                //value={`${drugCode}`}
+                value={`http://localhost:3000/customer/${drugCode}`}
                 viewBox={`0 0 256 256`}
                 id="QRCode"
               />
