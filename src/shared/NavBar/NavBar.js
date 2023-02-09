@@ -38,6 +38,11 @@ const NavBar = () => {
           About
         </Link>
       </li>
+      <li>
+        <Link className="font-bold text-primary" to="/drugVerify">
+          Drug Verify
+        </Link>
+      </li>
       {user?.uid ? (
         <>
           <li>
