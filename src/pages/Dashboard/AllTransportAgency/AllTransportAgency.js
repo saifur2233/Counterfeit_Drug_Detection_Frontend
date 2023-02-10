@@ -1,6 +1,35 @@
-import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import React, { useState } from "react";
+import Loading from "../../../shared/Loading/Loading";
 
 const AllTransportAgency = () => {
+  const [deletingUser, setDeletingUser] = useState(null);
+  const closeModal = () => {
+    setDeletingUser(null);
+  };
+
+  const {
+    data: allTransportagency = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["allTransportagency"],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:4000/api/v1/admin/alltransportagency`
+      );
+      const data = await res.json();
+      return data.user;
+    },
+  });
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+
+  const hnadleDeleteUser = (user) => {
+    console.log(user);
+  };
   return (
     <div>
       <h1 className="text-2xl font-bold text-center text-secondary py-6">
@@ -10,52 +39,33 @@ const AllTransportAgency = () => {
         <table className="table table-zebra w-full">
           <thead>
             <tr>
-              <th></th>
+              <th>Index</th>
               <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Address</th>
+              <th>UserId</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-              <td>
-                <button className="btn btn-square btn-secondary btn-outline">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+            {allTransportagency.map((transportagency, i) => (
+              <tr key={transportagency._id}>
+                <th>{i + 1}</th>
+                <td>
+                  <div className="font-bold">{transportagency.name}</div>
+                </td>
+                <td>{transportagency.address}</td>
+                <td>{transportagency.userId}</td>
+                <td>
+                  <label
+                    onClick={() => setDeletingUser(transportagency)}
+                    htmlFor="confirmationmodal"
+                    className="btn btn-outline btn-error"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </td>
-            </tr>
-
-            <tr>
-              <th>2</th>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>Purple</td>
-            </tr>
-
-            <tr>
-              <th>3</th>
-              <td>Brice Swyre</td>
-              <td>Tax Accountant</td>
-              <td>Red</td>
-            </tr>
+                    Delete
+                  </label>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
