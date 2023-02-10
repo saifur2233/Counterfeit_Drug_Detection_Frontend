@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const RetailerRegister = () => {
+  const navigate = useNavigate();
   const [retailerId, setRetailerId] = useState("");
 
   const generateRetailerId = () => {
@@ -13,6 +16,28 @@ const RetailerRegister = () => {
     const name = form.name.value;
     const address = form.address.value;
     console.log(name, address, retailerId);
+    const user = {
+      name,
+      address,
+      userType: "Retailer",
+      userId: retailerId,
+    };
+    console.log(user);
+    // user registration
+    fetch("http://localhost:4000/api/v1/user-signup", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        toast.success("Retailer Successfully Registered.");
+        form.reset();
+        navigate("/dashboard/allRetailer");
+      });
   };
   return (
     <div className="hero min-h-screen bg-base-100">

@@ -1,20 +1,20 @@
 import React from "react";
 
-const DistributorRequestDrugs = () => {
+const SendDrugReqDistributor = () => {
   const handleRequestDrug = (event) => {
     event.preventDefault();
     const form = event.target;
     const drugName = form.drugName.value;
     const quantity = form.quantity.value;
-    const menuName = form.menuName.value;
-    const menuAddress = form.menuAddress.value;
-    console.log(drugName, quantity, menuName, menuAddress);
+    const distributorAddress = form.distributorAddress.value;
+    const distributorName = form.distributorName.value;
+    console.log(drugName, quantity, distributorName, distributorAddress);
   };
   return (
     <div>
       <div>
         <h1 className="font-bold text-3xl text-center">
-          Request Drugs of Distributor
+          Send Drug Request to Distributor
         </h1>
         <div className="flex justify-center py-10">
           <form
@@ -24,23 +24,23 @@ const DistributorRequestDrugs = () => {
             <div className="card-body">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Menufacturer Name</span>
+                  <span className="label-text">Distributor Name</span>
                 </label>
                 <input
                   type="text"
-                  name="menuName"
-                  placeholder="Menufacturer Name"
+                  name="distributorName"
+                  placeholder="Distributor Name"
                   className="input input-bordered"
                 />
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Menufacturer Address</span>
+                  <span className="label-text">Distributor Address</span>
                 </label>
                 <input
                   type="text"
-                  name="menuAddress"
-                  placeholder="Menufacturer Address"
+                  name="distributorAddress"
+                  placeholder="Distributor Address"
                   className="input input-bordered"
                 />
               </div>
@@ -77,4 +77,4 @@ const DistributorRequestDrugs = () => {
   );
 };
 
-export default DistributorRequestDrugs;
+export default SendDrugReqDistributor;

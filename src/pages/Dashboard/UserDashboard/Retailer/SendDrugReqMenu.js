@@ -1,6 +1,6 @@
 import React from "react";
 
-const DistributorRequestDrugs = () => {
+const SendDrugReqMenu = () => {
   const handleRequestDrug = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -14,7 +14,7 @@ const DistributorRequestDrugs = () => {
     <div>
       <div>
         <h1 className="font-bold text-3xl text-center">
-          Request Drugs of Distributor
+          Send Drug Request to Menufacturer
         </h1>
         <div className="flex justify-center py-10">
           <form
@@ -77,4 +77,4 @@ const DistributorRequestDrugs = () => {
   );
 };
 
-export default DistributorRequestDrugs;
+export default SendDrugReqMenu;

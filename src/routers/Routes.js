@@ -20,11 +20,17 @@ import RetailerRegister from "../pages/Dashboard/Register/RetailerRegister";
 import TransportRegister from "../pages/Dashboard/Register/TransportRegister";
 import DistributorRequestDrugs from "../pages/Dashboard/UserDashboard/Distributor/DistributorRequestDrugs";
 import HomePageDistributor from "../pages/Dashboard/UserDashboard/Distributor/HomePageDistributor";
+import ViewDistributorSendReq from "../pages/Dashboard/UserDashboard/Distributor/ViewDistributorSendReq";
 import ViewRetailerRequests from "../pages/Dashboard/UserDashboard/Distributor/ViewRetailerRequests";
 import AddDrugsMenufacturer from "../pages/Dashboard/UserDashboard/Menufacturer/AddDrugsMenufacturer";
 import HomePageMenufacturer from "../pages/Dashboard/UserDashboard/Menufacturer/HomePageMenufacturer";
 import MenuViewDrugDetails from "../pages/Dashboard/UserDashboard/Menufacturer/MenuViewDrugDetails";
 import ViewDrugRequest from "../pages/Dashboard/UserDashboard/Menufacturer/ViewDrugRequest";
+import HomeRetailer from "../pages/Dashboard/UserDashboard/Retailer/HomeRetailer";
+import SendDrugReqDistributor from "../pages/Dashboard/UserDashboard/Retailer/SendDrugReqDistributor";
+import SendDrugReqMenu from "../pages/Dashboard/UserDashboard/Retailer/SendDrugReqMenu";
+import ViewSendRequestDistributor from "../pages/Dashboard/UserDashboard/Retailer/ViewSendRequestDistributor";
+import ViewSendRequestMenu from "../pages/Dashboard/UserDashboard/Retailer/ViewSendRequestMenu";
 import UserDashboard from "../pages/Dashboard/UserDashboard/UserDashboard";
 import Home from "../pages/Home/Home";
 import PrivateRoute from "./PrivateRoute";
@@ -175,8 +181,32 @@ export const router = createBrowserRouter([
         element: <DistributorRequestDrugs></DistributorRequestDrugs>,
       },
       {
+        path: "/userdashboard/distributorSendReq",
+        element: <ViewDistributorSendReq></ViewDistributorSendReq>,
+      },
+      {
         path: "/userdashboard/distributorViewRetailerReq",
         element: <ViewRetailerRequests></ViewRetailerRequests>,
+      },
+      {
+        path: "/userdashboard/homeRetailer",
+        element: <HomeRetailer></HomeRetailer>,
+      },
+      {
+        path: "/userdashboard/retailerSendReq",
+        element: <SendDrugReqMenu></SendDrugReqMenu>,
+      },
+      {
+        path: "/userdashboard/retailerSendReqDistributor",
+        element: <SendDrugReqDistributor></SendDrugReqDistributor>,
+      },
+      {
+        path: "/userdashboard/viewSendRequestMenu",
+        element: <ViewSendRequestMenu></ViewSendRequestMenu>,
+      },
+      {
+        path: "/userdashboard/viewSendRequestDistributor",
+        element: <ViewSendRequestDistributor></ViewSendRequestDistributor>,
       },
     ],
   },

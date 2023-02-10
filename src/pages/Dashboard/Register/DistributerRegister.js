@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const DistributerRegister = () => {
+  const navigate = useNavigate();
   const [distributorId, setDistributorId] = useState("");
 
   const generateDistributorId = () => {
@@ -13,6 +16,28 @@ const DistributerRegister = () => {
     const name = form.name.value;
     const address = form.address.value;
     console.log(name, address, distributorId);
+    const user = {
+      name,
+      address,
+      userType: "Distributor",
+      userId: distributorId,
+    };
+    console.log(user);
+    // user registration
+    fetch("http://localhost:4000/api/v1/user-signup", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        toast.success("Distributor Successfully Registered.");
+        form.reset();
+        navigate("/dashboard/allDistributor");
+      });
   };
   return (
     <div className="hero min-h-screen bg-base-100">
@@ -28,7 +53,7 @@ const DistributerRegister = () => {
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <form onSubmit={handleRegistration} className="card-body">
-            <h1 className="text-5xl font-bold text-center text-secondary">
+            <h1 className="text-5xl font-bold text-center text-primary">
               Distributor Registration
             </h1>
             <div className="form-control">
@@ -71,7 +96,7 @@ const DistributerRegister = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-secondary">Add to System</button>
+              <button className="btn btn-primary">Add to System</button>
             </div>
           </form>
         </div>

@@ -14,7 +14,6 @@ const NavBar = () => {
 
   useEffect(() => {
     const localDark = JSON.parse(localStorage.getItem("dark-mode"));
-    console.log(localDark);
     setDark(localDark);
   }, []);
 

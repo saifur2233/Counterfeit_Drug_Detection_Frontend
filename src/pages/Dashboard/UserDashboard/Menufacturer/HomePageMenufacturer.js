@@ -9,9 +9,9 @@ const HomePageMenufacturer = () => {
         </h1>
         <div className="flex justify-center py-12">
           <img
-            className="w-1/2"
             src="https://i.ibb.co/J7JLjs7/factory.jpg"
             alt="HomePageMenufacturer"
+            className="w-max-sm w-1/2"
           />
         </div>
       </div>

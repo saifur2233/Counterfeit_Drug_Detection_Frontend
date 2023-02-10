@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const TransportRegister = () => {
+  const navigate = useNavigate();
   const [transportId, setTransportId] = useState("");
 
   const generateTransportId = () => {
@@ -12,7 +15,29 @@ const TransportRegister = () => {
     const form = event.target;
     const name = form.name.value;
     const address = form.address.value;
-    console.log(name, address, transportId);
+
+    const user = {
+      name,
+      address,
+      userType: "TransportAgency",
+      userId: transportId,
+    };
+
+    // user registration
+    fetch("http://localhost:4000/api/v1/user-signup", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        toast.success("Transport Agency Successfully Registered.");
+        form.reset();
+        navigate("/dashboard/alltransportagency");
+      });
   };
   return (
     <div className="hero min-h-screen bg-base-100">
@@ -71,7 +96,7 @@ const TransportRegister = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-secondary">Add to System</button>
+              <button className="btn btn-primary">Add to System</button>
             </div>
           </form>
         </div>
