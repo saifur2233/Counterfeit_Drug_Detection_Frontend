@@ -27,10 +27,11 @@ import HomePageMenufacturer from "../pages/Dashboard/UserDashboard/Menufacturer/
 import MenuViewDrugDetails from "../pages/Dashboard/UserDashboard/Menufacturer/MenuViewDrugDetails";
 import ViewDrugRequest from "../pages/Dashboard/UserDashboard/Menufacturer/ViewDrugRequest";
 import HomeRetailer from "../pages/Dashboard/UserDashboard/Retailer/HomeRetailer";
-import SendDrugReqDistributor from "../pages/Dashboard/UserDashboard/Retailer/SendDrugReqDistributor";
-import SendDrugReqMenu from "../pages/Dashboard/UserDashboard/Retailer/SendDrugReqMenu";
-import ViewSendRequestDistributor from "../pages/Dashboard/UserDashboard/Retailer/ViewSendRequestDistributor";
-import ViewSendRequestMenu from "../pages/Dashboard/UserDashboard/Retailer/ViewSendRequestMenu";
+import RetailerRequestDrugs from "../pages/Dashboard/UserDashboard/Retailer/RetailerRequestDrugs";
+
+import HomeTransportAgency from "../pages/Dashboard/UserDashboard/TransportAgency/HomeTransportAgency";
+import TransportAgencyRequestDrugs from "../pages/Dashboard/UserDashboard/TransportAgency/TransportAgencyRequestDrugs";
+import ViewTransportAgencySendReq from "../pages/Dashboard/UserDashboard/TransportAgency/ViewTransportAgencySendReq";
 import UserDashboard from "../pages/Dashboard/UserDashboard/UserDashboard";
 import Home from "../pages/Home/Home";
 import PrivateRoute from "./PrivateRoute";
@@ -152,10 +153,10 @@ export const router = createBrowserRouter([
     path: "/userdashboard",
     element: <UserDashboardLayout></UserDashboardLayout>,
     children: [
-      {
-        path: "/userdashboard",
-        element: <UserDashboard></UserDashboard>,
-      },
+      // {
+      //   path: "/userdashboard",
+      //   element: <UserDashboard></UserDashboard>,
+      // },
       {
         path: "/userdashboard/homeMenufacturer",
         element: <HomePageMenufacturer></HomePageMenufacturer>,
@@ -193,20 +194,21 @@ export const router = createBrowserRouter([
         element: <HomeRetailer></HomeRetailer>,
       },
       {
-        path: "/userdashboard/retailerSendReq",
-        element: <SendDrugReqMenu></SendDrugReqMenu>,
+        path: "/userdashboard/retailerRequestDrugs",
+        element: <RetailerRequestDrugs></RetailerRequestDrugs>,
+      },
+
+      {
+        path: "/userdashboard/homeTransportAgency",
+        element: <HomeTransportAgency></HomeTransportAgency>,
       },
       {
-        path: "/userdashboard/retailerSendReqDistributor",
-        element: <SendDrugReqDistributor></SendDrugReqDistributor>,
+        path: "/userdashboard/transportAgencyRequestDrugs",
+        element: <TransportAgencyRequestDrugs></TransportAgencyRequestDrugs>,
       },
       {
-        path: "/userdashboard/viewSendRequestMenu",
-        element: <ViewSendRequestMenu></ViewSendRequestMenu>,
-      },
-      {
-        path: "/userdashboard/viewSendRequestDistributor",
-        element: <ViewSendRequestDistributor></ViewSendRequestDistributor>,
+        path: "/userdashboard/transportAgencySendReq",
+        element: <ViewTransportAgencySendReq></ViewTransportAgencySendReq>,
       },
     ],
   },

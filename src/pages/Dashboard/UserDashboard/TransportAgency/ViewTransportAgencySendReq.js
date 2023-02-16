@@ -1,11 +1,11 @@
 import React from "react";
 
-const ViewSendRequestDistributor = () => {
+const ViewTransportAgencySendReq = () => {
   return (
     <div>
       <div>
         <h1 className="font-bold text-3xl text-center">
-          View Send Request Distributor
+          View Distributor Send Request
         </h1>
         <div className="py-8">
           <div className="overflow-x-auto">
@@ -103,4 +103,4 @@ const ViewSendRequestDistributor = () => {
   );
 };
 
-export default ViewSendRequestDistributor;
+export default ViewTransportAgencySendReq;

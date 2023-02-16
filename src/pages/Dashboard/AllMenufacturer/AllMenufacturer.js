@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Loading from "../../../shared/Loading/Loading";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import ConfirmationModal from "../../../shared/Modal/ConfirmationModal";
 
 const AllMenufacturer = () => {
   const [deletingUser, setDeletingUser] = useState(null);
@@ -29,7 +30,17 @@ const AllMenufacturer = () => {
   }
 
   const hnadleDeleteUser = (user) => {
-    console.log(user);
+    fetch(`http://localhost:4000/api/v1/admin/user/${user._id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.user.deletedCount > 0) {
+          closeModal();
+          toast.success("User deleted succesfuly");
+          refetch();
+        }
+      });
   };
 
   console.log(allMenufacturers);
@@ -72,6 +83,15 @@ const AllMenufacturer = () => {
           </tbody>
         </table>
       </div>
+      {deletingUser && (
+        <ConfirmationModal
+          title={`Are you sure you want to delete?`}
+          message={`If you deleting user ${deletingUser.name}. You cannot undo it.`}
+          closeModal={closeModal}
+          successAction={hnadleDeleteUser}
+          modalData={deletingUser}
+        ></ConfirmationModal>
+      )}
     </div>
   );
 };

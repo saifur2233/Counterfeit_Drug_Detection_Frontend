@@ -22,7 +22,7 @@ const MenuViewDrugDetails = () => {
     return <Loading></Loading>;
   }
 
-  console.log(allDrugs);
+  //console.log(allDrugs);
 
   return (
     <div>

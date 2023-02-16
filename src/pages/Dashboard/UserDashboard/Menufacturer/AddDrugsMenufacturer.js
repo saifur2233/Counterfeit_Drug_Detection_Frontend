@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import QRCode from "react-qr-code";
+import { useNavigate } from "react-router-dom";
 
 const AddDrugsMenufacturer = () => {
+  const navigate = useNavigate();
   const [drugCode, setDrugCode] = useState("");
 
   const generateDrugCode = () => {
@@ -50,7 +52,7 @@ const AddDrugsMenufacturer = () => {
       expDate,
     };
 
-    console.log(drug);
+    //console.log(drug);
 
     fetch("http://localhost:4000/api/v1/menufacturer/addDrug", {
       method: "POST",
@@ -61,9 +63,10 @@ const AddDrugsMenufacturer = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         toast.success("Drug successfully added.");
         form.reset();
+        navigate("/userdashboard/menuViewDrugDetails");
       });
   };
   return (

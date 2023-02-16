@@ -2,7 +2,7 @@ import React from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-const DistributorRequestDrugs = () => {
+const TransportAgencyRequestDrugs = () => {
   const navigate = useNavigate();
   const handleRequestDrug = (event) => {
     event.preventDefault();
@@ -13,7 +13,7 @@ const DistributorRequestDrugs = () => {
     const receiverAddress = form.receiverAddress.value;
     const receiverType = form.receiverType.value;
     const senderAddress = form.senderAddress.value;
-    const senderType = "Distributor";
+    const senderType = "TransportAgency";
     const reqObj = {
       receiverName,
       receiverAddress,
@@ -44,7 +44,7 @@ const DistributorRequestDrugs = () => {
     <div>
       <div>
         <h1 className="font-bold text-3xl text-center">
-          Request Drugs of Distributor
+          Request Drugs of TransportAgency
         </h1>
         <div className="flex justify-center py-10">
           <form
@@ -87,6 +87,8 @@ const DistributorRequestDrugs = () => {
                     Select Receiver
                   </option>
                   <option value="Menufacturer">Menufacturer</option>
+                  <option value="Distributor">Distributor</option>
+                  <option value="Retailer">Retailer</option>
                 </select>
               </div>
               <div className="form-control">
@@ -132,4 +134,4 @@ const DistributorRequestDrugs = () => {
   );
 };
 
-export default DistributorRequestDrugs;
+export default TransportAgencyRequestDrugs;

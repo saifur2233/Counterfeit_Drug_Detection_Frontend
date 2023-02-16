@@ -42,7 +42,7 @@ const UserDashboardLayout = () => {
             </li>
             <li>
               <Link to="/userdashboard/distributorRequestDrugs">
-                Send Drug Request Menu
+                Send Drug Request
               </Link>
             </li>
 
@@ -60,23 +60,28 @@ const UserDashboardLayout = () => {
               <Link to="/userdashboard/homeRetailer">Home Retailer</Link>
             </li>
             <li>
-              <Link to="/userdashboard/retailerSendReq">
-                Send Drug Request Menu
+              <Link to="/userdashboard/retailerRequestDrugs">
+                Send Drug Request
               </Link>
             </li>
             <li>
-              <Link to="/userdashboard/retailerSendReqDistributor">
-                Send Drug Request Distributor
+              <Link to="/userdashboard/distributorSendReq">
+                View Send Request
               </Link>
             </li>
             <li>
-              <Link to="/userdashboard/viewSendRequestMenu">
-                View Send Request Menu
+              <Link to="/userdashboard/homeTransportAgency">
+                Home TransportAgency
               </Link>
             </li>
             <li>
-              <Link to="/userdashboard/viewSendRequestDistributor">
-                View Send Request Distributor
+              <Link to="/userdashboard/transportAgencyRequestDrugs">
+                Send Drug Request
+              </Link>
+            </li>
+            <li>
+              <Link to="/userdashboard/transportAgencySendReq">
+                View Send Request
               </Link>
             </li>
           </ul>
