@@ -42,20 +42,23 @@ const NavBar = () => {
           Drug Verify
         </Link>
       </li>
-      {user?.uid ? (
+      {user?.displayName && (
         <>
           <li>
             <Link className="font-bold text-primary">
               {user?.email.slice(0, 10)}
             </Link>
           </li>
-          <li>
-            <Link className="font-bold text-primary" onClick={logout}>
-              Logout
-            </Link>
-          </li>
         </>
-      ) : (
+      )}
+      {user?.displayName && (
+        <li>
+          <Link className="font-bold text-primary" onClick={logout}>
+            Logout
+          </Link>
+        </li>
+      )}
+      {!user?.displayName && (
         <>
           <li>
             <Link className="font-bold text-primary" to="/adminlogin">

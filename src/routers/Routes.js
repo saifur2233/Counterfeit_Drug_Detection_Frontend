@@ -7,9 +7,11 @@ import About from "../pages/About/About";
 import AdminLogin from "../pages/Auth/AdminLogin/AdminLogin";
 import AdminRegistration from "../pages/Auth/AdminLogin/AdminRegistration";
 import UserLogin from "../pages/Auth/UserLogin/UserLogin";
+
 import CheckAuthenticity from "../pages/Customer/CheckAuthenticity";
 import DrugVerify from "../pages/Customer/DrugVerify";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
+import AllAdmin from "../pages/Dashboard/AllAdmin/AllAdmin";
 import AllDistributor from "../pages/Dashboard/AllDistributor/AllDistributor";
 import AllMenufacturer from "../pages/Dashboard/AllMenufacturer/AllMenufacturer";
 import AllRetailer from "../pages/Dashboard/AllRetailer/AllRetailer";
@@ -61,10 +63,7 @@ export const router = createBrowserRouter([
         path: "/adminlogin",
         element: <AdminLogin></AdminLogin>,
       },
-      {
-        path: "/adminadd",
-        element: <AdminRegistration></AdminRegistration>,
-      },
+
       {
         path: "/userlogin",
         element: <UserLogin></UserLogin>,
@@ -80,6 +79,22 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AdminDashboard></AdminDashboard>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/adminadd",
+        element: (
+          <PrivateRoute>
+            <AdminRegistration></AdminRegistration>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/alladmins",
+        element: (
+          <PrivateRoute>
+            <AllAdmin></AllAdmin>
           </PrivateRoute>
         ),
       },
@@ -153,10 +168,10 @@ export const router = createBrowserRouter([
     path: "/userdashboard",
     element: <UserDashboardLayout></UserDashboardLayout>,
     children: [
-      // {
-      //   path: "/userdashboard",
-      //   element: <UserDashboard></UserDashboard>,
-      // },
+      {
+        path: "/userdashboard",
+        element: <UserDashboard></UserDashboard>,
+      },
       {
         path: "/userdashboard/homeMenufacturer",
         element: <HomePageMenufacturer></HomePageMenufacturer>,

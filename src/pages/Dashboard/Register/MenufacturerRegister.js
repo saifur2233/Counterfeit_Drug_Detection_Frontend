@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../contexts/UserContext";
 
 const MenufacturerRegister = () => {
+  const { createUser, updateUser } = useContext(AuthContext);
+  const [error, setError] = useState(null);
+
   const navigate = useNavigate();
   const [menufacturerId, setMenufacturerId] = useState("");
 
@@ -14,29 +18,54 @@ const MenufacturerRegister = () => {
     const form = event.target;
     const name = form.name.value;
     const address = form.address.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const userType = "Menufacturer";
     //console.log(name, address, menufacturerId);
-    const user = {
+    const userObj = {
       name,
       address,
-      userType: "Menufacturer",
+      userType,
       userId: menufacturerId,
+      email,
+      password,
     };
-    console.log(user);
+    console.log(userObj);
 
-    // user registration
-    fetch("http://localhost:4000/api/v1/user-signup", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
+    if (password.length < 6) {
+      setError(`Your Password must be 6 character`);
+      return;
+    }
+
+    createUser(email, password)
       .then((result) => {
-        console.log(result);
-        toast.success("Menufacturer Successfully Registered.");
-        form.reset();
-        navigate("/dashboard/allMenufacturer");
+        const user = result;
+        console.log(user);
+        updateUser({ displayName: userType })
+          .then(() => {
+            console.log("Profile updated");
+            // user registration
+            fetch("http://localhost:4000/api/v1/user-signup", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(userObj),
+            }).then((result) => {
+              console.log(result);
+              form.reset();
+              toast.success("Menufacturer Successfully Registered.");
+              navigate("/dashboard/allMenufacturer");
+            });
+          })
+          .catch((error) => {
+            setError(error.message);
+            toast.error("Registration Failed!");
+          });
+      })
+      .catch((error) => {
+        setError(error.message);
+        toast.error("Registration Failed!");
       });
   };
   return (
@@ -94,6 +123,30 @@ const MenufacturerRegister = () => {
                 />
                 <span onClick={generateMenufacturerId}>Generate</span>
               </label>
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Enter Email</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Enter Email"
+                name="email"
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Enter Password</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Enter Password"
+                name="password"
+                className="input input-bordered"
+                required
+              />
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary">Add to System</button>

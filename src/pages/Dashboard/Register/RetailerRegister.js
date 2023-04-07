@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../contexts/UserContext";
 
 const RetailerRegister = () => {
+  const { createUser, updateUser } = useContext(AuthContext);
+  const [error, setError] = useState(null);
+
   const navigate = useNavigate();
   const [retailerId, setRetailerId] = useState("");
 
@@ -15,28 +19,53 @@ const RetailerRegister = () => {
     const form = event.target;
     const name = form.name.value;
     const address = form.address.value;
-    console.log(name, address, retailerId);
-    const user = {
+    const email = form.email.value;
+    const password = form.password.value;
+    const userType = "Retailer";
+    const userObj = {
       name,
       address,
-      userType: "Retailer",
+      userType,
       userId: retailerId,
+      email,
+      password,
     };
-    console.log(user);
-    // user registration
-    fetch("http://localhost:4000/api/v1/user-signup", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
+    console.log(userObj);
+
+    if (password.length < 6) {
+      setError(`Your Password must be 6 character`);
+      return;
+    }
+
+    createUser(email, password)
       .then((result) => {
-        console.log(result);
-        toast.success("Retailer Successfully Registered.");
-        form.reset();
-        navigate("/dashboard/allRetailer");
+        const user = result;
+        console.log(user);
+        updateUser({ displayName: userType })
+          .then(() => {
+            console.log("Profile updated");
+            // user registration
+            fetch("http://localhost:4000/api/v1/user-signup", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(userObj),
+            }).then((result) => {
+              console.log(result);
+              form.reset();
+              toast.success("Retailer Successfully Registered.");
+              navigate("/dashboard/allRetailer");
+            });
+          })
+          .catch((error) => {
+            setError(error.message);
+            toast.error("Registration Failed!");
+          });
+      })
+      .catch((error) => {
+        setError(error.message);
+        toast.error("Registration Failed!");
       });
   };
   return (
@@ -94,6 +123,30 @@ const RetailerRegister = () => {
                 />
                 <span onClick={generateRetailerId}>Generate</span>
               </label>
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Enter Email</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Enter Email"
+                name="email"
+                className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Enter Password</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Enter Password"
+                name="password"
+                className="input input-bordered"
+                required
+              />
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-secondary">Add to System</button>

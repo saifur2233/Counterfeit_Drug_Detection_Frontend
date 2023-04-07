@@ -22,7 +22,7 @@ const DrugVerify = () => {
 
   //console.log(scanResultWebCam);
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero min-h-screen ">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img
           src="https://i.ibb.co/tcrHVPf/Screenshot-2023-02-09-191518-removebg-preview.png"
